@@ -221,6 +221,7 @@ my $o_earliestRestoreDate = $np->opts->earliestRestoreDate if (defined $np->opts
 my $o_time_interval = $np->opts->time_interval;
 my $o_timeout = $np->opts->timeout;
 my $o_ressource_type = $np->opts->resource_type;
+$o_verb = $np->opts->verbose if (defined $np->opts->verbose);
 my $result;
 
 my $o_db_type =$np->opts->dbtype ;
