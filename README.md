@@ -69,7 +69,7 @@ dbtype=MariaDB | MySql
 sample to get cpu usage:
 
 ```bash
-check_azure_mdb.pl --tenantid=<TENANTID> --clientid=<CLIENTID> --subid=<SUBID> --clientsecret=<CLIENTSECRET> --Host=MyHost --dbtype=MariaDB --metric=cpu_percent --time_interval=PT5M --warning=80 --critical=90
+check_azure_mdb.pl --tenant=<TENANTID> --clientid=<CLIENTID> --subscriptionid=<SUBID> --clientsecret=<CLIENTSECRET> --Host=MyHost --dbtype=MariaDB --metric=cpu_percent --time_interval=PT5M --warning=80 --critical=90
 ```
 
 you may get  :
@@ -81,7 +81,7 @@ OK : CPU percent = 1.998% | cpu_percent=1.998%
 sample to check if BDD is running
 
 ```bash
-check_azure_mdb.pl --tenantid=<TENANTID> --clientid=<CLIENTID> --subid=<SUBID> --clientsecret=<CLIENTSECRET> --Host=MyHost --dbtype=MySql
+check_azure_mdb.pl --tenant=<TENANTID> --clientid=<CLIENTID> --subscriptionid=<SUBID> --clientsecret=<CLIENTSECRET> --Host=MyHost --dbtype=MySql
 ```
 you may get :
 
