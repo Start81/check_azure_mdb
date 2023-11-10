@@ -6,7 +6,7 @@
 # Author        : Start81
 # Version       : 3.0.0
 # Last Modified : 20/09/2023
-# Modified By   :Start81
+# Modified By   : Start81
 # Description   : Check Azure MySql/MariaDb
 # Depends On    : REST::Client, Data::Dumper, DateTime, Getopt::Long, Json,Monitoring::Plugin
 #
@@ -50,8 +50,6 @@ my $np = Monitoring::Plugin->new(
     timeout => 30
 );
 
-
-
 my %db_type = ('MariaDB' => ['Microsoft.DBforMariaDB', '2018-06-01'],
     'MySql' => ['Microsoft.DBforMySQL', '2017-12-01']);
 my %metrics = ('cpu_percent' => ['%', 'average'],
@@ -81,10 +79,10 @@ sub write_file {
     my $fd;
     verb("write $tmp_file_name");
     if (open($fd, '>', $tmp_file_name)) {
-            print $fd $content;
-            close($fd);       
+        print $fd $content;
+        close($fd);       
     } else {
-        my $msg ="UNKNOWN unable to write file $tmp_file_name";
+        my $msg ="unable to write file $tmp_file_name";
         $np->plugin_exit('UNKNOWN',$msg);
     }
     
@@ -221,9 +219,8 @@ my $o_earliestRestoreDate = $np->opts->earliestRestoreDate if (defined $np->opts
 my $o_time_interval = $np->opts->time_interval;
 my $o_timeout = $np->opts->timeout;
 my $o_ressource_type = $np->opts->resource_type;
-$o_verb = $np->opts->verbose if (defined $np->opts->verbose);
 my $result;
-
+$o_verb = $np->opts->verbose if (defined $np->opts->verbose);
 my $o_db_type =$np->opts->dbtype ;
 my $o_zeroed = $np->opts->zeroed  if (defined $np->opts->zeroed);
 
@@ -232,8 +229,6 @@ if (!defined($o_earliestRestoreDate))  {
         if (!exists $metrics{$o_metric}) {
             my @keys = keys %metrics;
             $np->plugin_die("Metric " . $o_metric . " name not defined available metrics are " . join(', ', @keys) ." \n");
-            
-
         }
         if (defined($o_time_interval)) {
             if (!exists $interval{$o_time_interval}) {
@@ -289,9 +284,9 @@ if (-e $tmp_file) {
         $token_json = from_json($token);
     }
 } else {
-        $token = get_access_token($clientid,$clientsecret,$tenantid);
-        write_file($token,$tmp_file);
-        $token_json = from_json($token);;
+    $token = get_access_token($clientid,$clientsecret,$tenantid);
+    write_file($token,$tmp_file);
+    $token_json = from_json($token);;
 }
 verb(Dumper($token_json ));
 $token = $token_json->{'access_token'};
@@ -307,7 +302,7 @@ $client->addHeader('Accept', 'application/json');
 my $url = "https://management.azure.com/subscriptions/" . $subid . "/resourcegroups?api-version=2020-06-01";
 $client->GET($url);
 if($client->responseCode() ne '200') {
-    $msg = "UNKNOWN response code : " . $client->responseCode() . " Message : Error when getting resource groups list" . $client->responseContent();
+    $msg = "response code : " . $client->responseCode() . " Message : Error when getting resource groups list" . $client->responseContent();
     $np->plugin_exit('UNKNOWN',$msg);
 }
 my $response_json = from_json($client->responseContent());
@@ -320,7 +315,7 @@ do {
         $client->GET($get_serveurlist_url);
 
         if($client->responseCode() ne '200') {
-            $msg = "UNKNOWN response code : " . $client->responseCode() . " Message : Error when getting serveur list " . $client->responseContent();
+            $msg = "response code : " . $client->responseCode() . " Message : Error when getting serveur list " . $client->responseContent();
             $np->plugin_exit('UNKNOWN',$msg);
         }
         $reponse_server = from_json($client->responseContent());
@@ -380,7 +375,7 @@ do {
                         verb($get_metric_url);
                         $client->GET($get_metric_url);
                         if($client->responseCode() ne '200') {
-                            $msg = "UNKNOWN response code : " . $client->responseCode() . " Message : Error when getting metric " . $client->responseContent();
+                            $msg = "response code : " . $client->responseCode() . " Message : Error when getting metric " . $client->responseContent();
                             $np->plugin_exit('UNKNOWN',$msg);
                         }
                         my $reponse_metrics = from_json($client->responseContent());
@@ -390,7 +385,7 @@ do {
                             if (defined $o_zeroed){
                                 $result = 0
                             } else {
-                                $msg =  "UNKNOWN : metric " . $o_metric . " unavailable or empty data " . Dumper($reponse_metrics);
+                                $msg =  "metric " . $o_metric . " unavailable or empty data " . Dumper($reponse_metrics);
                                 $np->plugin_exit('UNKNOWN',$msg);
                             } 
                         } else {
@@ -436,6 +431,3 @@ if ($server_found  == 0) {
 $np->plugin_exit('CRITICAL', join(', ', @criticals)) if (scalar @criticals > 0);
 $np->plugin_exit('WARNING', join(', ', @warnings)) if (scalar @warnings > 0);
 $np->plugin_exit('OK',join(', ', @ok ));
-
-
-
