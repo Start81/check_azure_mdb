@@ -75,7 +75,7 @@ check_azure_mdb.pl --tenant=<TENANTID> --clientid=<CLIENTID> --subscriptionid=<S
 you may get  :
 
 ```bash
-OK : CPU percent = 1.998% | cpu_percent=1.998%
+  OK - CPU percent = 0.11% | cpu_percent=0.11%;80;90
 ```
 
 sample to check if BDD is running
