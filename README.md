@@ -4,12 +4,12 @@ Check if An Azure MariaDB or a Mysql is up, get a metric or check the earliestRe
 
 ### prerequisites
 
-This script uses theses libs : REST::Client, Data::Dumper, DateTime, Getopt::Long, JSON, Monitoring::Plugin
+This script uses theses libs : REST::Client, Data::Dumper, DateTime, Json, Monitoring::Plugin, File::Basename, Readonly
 
 to install them type :
 
 ```
-sudo cpan  REST::Client Data::Dumper Encode  Getopt::Long JSON DateTime File::Basename Readonly Getopt::Long Monitoring::Plugin
+sudo cpan  REST::Client Data::Dumper JSON DateTime File::Basename Readonly Monitoring::Plugin File::Basename Readonly
 ```
 ### use case
 
