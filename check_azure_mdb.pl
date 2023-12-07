@@ -27,7 +27,6 @@
 use REST::Client;
 use Data::Dumper;
 use JSON;
-use Encode qw(decode encode);
 use utf8;
 use DateTime;
 use File::Basename;
