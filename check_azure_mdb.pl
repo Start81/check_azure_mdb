@@ -8,7 +8,7 @@
 # Last Modified : 20/09/2023
 # Modified By   : Start81
 # Description   : Check Azure MySql/MariaDb
-# Depends On    : REST::Client, Data::Dumper, DateTime, Getopt::Long, Json,Monitoring::Plugin
+# Depends On    : REST::Client, Data::Dumper, DateTime, Json,Monitoring::Plugin, File::Basename, Readonly
 #
 # Changelog:
 #    Legend:
@@ -30,7 +30,6 @@ use JSON;
 use Encode qw(decode encode);
 use utf8;
 use DateTime;
-use Getopt::Long;
 use File::Basename;
 use strict;
 use warnings;
