@@ -221,7 +221,8 @@ my $o_ressource_type = $np->opts->resource_type;
 my $result;
 $o_verb = $np->opts->verbose if (defined $np->opts->verbose);
 my $o_db_type =$np->opts->dbtype ;
-my $o_zeroed = $np->opts->zeroed  if (defined $np->opts->zeroed);
+my $o_zeroed;
+$o_zeroed = $np->opts->zeroed  if (defined $np->opts->zeroed);
 
 if (!defined($o_earliestRestoreDate))  {
     if (defined($o_metric)) {
